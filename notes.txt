@@ -11,7 +11,7 @@ Challenge:
     
     More:
     - Once sell by date is passed, quality decreases by 2
-    - Quality > 0
+    - Quality >= 0
     - Aged Brie increases in quality (reversed)
     - Quality <= 50
     - Sulfuras is legendary (immune to Quality and SellIn)
