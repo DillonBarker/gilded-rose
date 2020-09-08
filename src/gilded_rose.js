@@ -10,18 +10,10 @@ class Shop {
   constructor(items=[]){
     this.items = items;
   }
-  
-  // My methods
 
   decreaseQuality(item) {
     item.quality = item.quality - 1;
   }
-
-  isQualityAtMax(item) {
-    if (item.quality < 50) {
-      item.quality = item.quality + 1;
-    }
-  };
 
   isNotSulfurasDecreaseQuality(item) {
     if (item.name != 'Sulfuras, Hand of Ragnaros') {
@@ -35,16 +27,22 @@ class Shop {
     }
   }
 
-  isNotSulfurasDecreaseSellBy(item) {
-    if (item.name != 'Sulfuras, Hand of Ragnaros') {
-      item.sellIn = item.sellIn - 1;
-    }
-  };
-
   isQualityAtMin(item) {
     if (item.quality > 0) {
       this.isAConjuredItem(item)
       this.isNotSulfurasDecreaseQuality(item)
+    }
+  };
+
+  isQualityAtMax(item) {
+    if (item.quality < 50) {
+      item.quality = item.quality + 1;
+    }
+  };
+
+  isNotSulfurasDecreaseSellBy(item) {
+    if (item.name != 'Sulfuras, Hand of Ragnaros') {
+      item.sellIn = item.sellIn - 1;
     }
   };
 
@@ -64,7 +62,7 @@ class Shop {
     if (item.sellIn < 0) {}
   }
 
-  isSellInLessThan(item) {
+  isBackstageSellInLessThan(item) {
     if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
       this.isSellInLessThanEleven(item)
       this.isSellInLessThanSix(item)
@@ -97,10 +95,9 @@ class Shop {
     return this.items;
   }
  
-  // Their method (with my refactors)
   update(item) {
       this.isNotBrieOrBackstagePass(item)
-      this.isSellInLessThan(item)
+      this.isBackstageSellInLessThan(item)
       this.isNotSulfurasDecreaseSellBy(item)
       this.isBrieOrBackstagePass(item) 
   }
