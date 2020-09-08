@@ -60,7 +60,7 @@ class Shop {
 
   isSellInLessThanZero(item) {
     if (item.sellIn < 0) {}
-  }
+  };
 
   isBackstageSellInLessThan(item) {
     if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
@@ -68,7 +68,7 @@ class Shop {
       this.isSellInLessThanSix(item)
       this.isSellInLessThanZero(item)
     }
-  }
+  };
 
   isNotBrieOrBackstagePass(item) {
     if (item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert') {
@@ -76,33 +76,27 @@ class Shop {
     } else {
       this.isQualityAtMax(item) 
     }
-  }
+  };
   
-  isBrieOrBackstagePass(item) {
+  isSellInLessThanZero(item) {
     if (item.sellIn < 0) {
-      if (item.name != 'Aged Brie') {
-        if (item.name != 'Backstage passes to a TAFKAL80ETC concert') {
-          this.isQualityAtMin(item)
-        } 
-      } else {
-        this.isQualityAtMax(item)
-      }
+      this.isNotBrieOrBackstagePass(item)
     }
-  }
+  };
 
   updateQuality(){
     this.items.forEach(item => this.update(item))
     return this.items;
-  }
+  };
  
   update(item) {
       this.isNotBrieOrBackstagePass(item)
-      this.isBackstageSellInLessThan(item)
       this.isNotSulfurasDecreaseSellBy(item)
-      this.isBrieOrBackstagePass(item) 
-  }
+      this.isBackstageSellInLessThan(item)
+      this.isSellInLessThanZero(item) 
+  };
 }
 module.exports = {
   Item,
   Shop
-}
+};
