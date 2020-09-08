@@ -7,16 +7,18 @@ Challenge:
     - All items have a SellIn value - denoting the num of days left to sell item
     - All items have a Quality value, denoting value
     - At the end of each day, quality is lowered and SellIn is lowered 
+    - Item (Name, SellIn, quality)
     
     More:
     - Once sell by date is passed, quality decreases by 2
     - Quality > 0
     - Aged Brie increases in quality (reversed)
-        * by 2 when 10 days or less
-        * by 3 when 5 days or less
-        * drops to 0 after concert
     - Quality <= 50
     - Sulfuras is legendary (immune to Quality and SellIn)
+    - Backstage passes increase as SellIn approaches:
+        * by 2 when SellIn <= 10
+        * by 3 when SellIN <= 5
+        * drops to 0 after concert
     
     Extra:
     - Conjured items degrade twice as fast in quality
@@ -25,3 +27,6 @@ Outline:
 - Can make changes to the UpdateQuality method, and add new code here if needed
 - Do not alter the item class or items property
 - Can make the method and items property static if needed.
+
+Plan:
+- Make each requirement into a test, pass them one by one manipulated the update method only.
