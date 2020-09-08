@@ -33,7 +33,19 @@ class Shop {
     if (this.items[i].quality > 0) {
       this.isNotSulfurasDecreaseQuality(i)
     }
-  }
+  };
+
+  isBackstageSellInLessThanEleven(i) {
+    if (this.items[i].sellIn < 11) {
+      this.isQualityAtMax(i)
+    }
+  };
+
+  isBackstageSellInLessThanSix(i) {
+    if (this.items[i].sellIn < 6) {
+      this.isQualityAtMax(i)
+    }
+  };
 
   // Their method (with my refactors)
   updateQuality() {
@@ -43,12 +55,8 @@ class Shop {
       } else {
         this.isQualityAtMax(i)
           if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].sellIn < 11) {
-              this.isQualityAtMax(i)
-            }
-            if (this.items[i].sellIn < 6) {
-              this.isQualityAtMax(i)
-            }
+            this.isBackstageSellInLessThanEleven(i)
+            this.isBackstageSellInLessThanSix(i)
           }
       }
       this.isNotSulfurasDecreaseSellBy(i)
