@@ -22,11 +22,18 @@ class Shop {
       this.items[i].quality = this.items[i].quality - 1;
     }
   };
+
   isNotSulfurasDecreaseSellBy(i) {
     if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
       this.items[i].sellIn = this.items[i].sellIn - 1;
     }
   };
+
+  isQualityAtMin(i) {
+    if (this.items[i].quality > 0) {
+      this.isNotSulfurasDecreaseQuality(i)
+    }
+  }
 
   // Their method (with my refactors)
   updateQuality() {
@@ -45,15 +52,12 @@ class Shop {
               this.isQualityAtMax(i)
             }
           }
-        
       }
       this.isNotSulfurasDecreaseSellBy(i)
       if (this.items[i].sellIn < 0) {
         if (this.items[i].name != 'Aged Brie') {
           if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].quality > 0) {
-              this.isNotSulfurasDecreaseQuality(i)
-            }
+            this.isQualityAtMin(i)
           } else {
             this.items[i].quality = this.items[i].quality - this.items[i].quality;
           }
