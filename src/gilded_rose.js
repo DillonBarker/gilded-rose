@@ -47,6 +47,13 @@ class Shop {
     }
   };
 
+  BackstageSellInLessThan(i) {
+    if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
+      this.isBackstageSellInLessThanEleven(i)
+      this.isBackstageSellInLessThanSix(i)
+    }
+  }
+
   // Their method (with my refactors)
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
@@ -54,10 +61,7 @@ class Shop {
         this.isQualityAtMin(i)
       } else {
         this.isQualityAtMax(i)
-          if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-            this.isBackstageSellInLessThanEleven(i)
-            this.isBackstageSellInLessThanSix(i)
-          }
+          this.BackstageSellInLessThan(i)
       }
       this.isNotSulfurasDecreaseSellBy(i)
       if (this.items[i].sellIn < 0) {
