@@ -35,22 +35,29 @@ class Shop {
     }
   };
 
-  isBackstageSellInLessThanEleven(i) {
+  isSellInLessThanEleven(i) {
     if (this.items[i].sellIn < 11) {
       this.isQualityAtMax(i)
     }
   };
 
-  isBackstageSellInLessThanSix(i) {
+  isSellInLessThanSix(i) {
     if (this.items[i].sellIn < 6) {
       this.isQualityAtMax(i)
     }
   };
 
-  BackstageSellInLessThan(i) {
+  isSellInLessThanZero(i) {
+    if (this.items[i].sellIn < 0) {
+    this.isQualityAtMax(i)
+    }
+  }
+
+  SellInLessThan(i) {
     if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-      this.isBackstageSellInLessThanEleven(i)
-      this.isBackstageSellInLessThanSix(i)
+      this.isSellInLessThanEleven(i)
+      this.isSellInLessThanSix(i)
+      this.isSellInLessThanZero(i)
     }
   }
 
@@ -61,25 +68,29 @@ class Shop {
       this.isQualityAtMax(i) 
     }
   }
+  
+  isBrieOrBackstagePass(i) {
+    if (this.items[i].sellIn < 0) {
+      if (this.items[i].name != 'Aged Brie') {
+        if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
+          this.isQualityAtMin(i)
+        } 
+      } else {
+        this.isQualityAtMax(i)
+      }
+    }
+  }
 
   // Their method (with my refactors)
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
       this.isNotBrieOrBackstagePass(i)
 
-      this.BackstageSellInLessThan(i)
+      this.SellInLessThan(i)
 
       this.isNotSulfurasDecreaseSellBy(i)
 
-      if (this.items[i].sellIn < 0) {
-        if (this.items[i].name != 'Aged Brie') {
-          if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-            this.isQualityAtMin(i)
-          } 
-        } else {
-          this.isQualityAtMax(i)
-        }
-      }
+      this.isBrieOrBackstagePass(i)
     }
 
     return this.items;
