@@ -77,6 +77,5 @@ describe("Gilded Rose", function() {
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toEqual(18)
   })
-    
-
+  
 });
