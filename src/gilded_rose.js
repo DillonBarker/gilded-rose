@@ -10,6 +10,10 @@ class Shop {
   constructor(items=[]){
     this.items = items;
   }
+  // My methods
+  isQualityAtMax(i) {
+    if (this.items[i].quality < 50) {}
+  }
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
       if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
@@ -19,7 +23,7 @@ class Shop {
           }
         }
       } else {
-        if (this.items[i].quality < 50) {
+        if (this.items[i].quality < 50) { 
           this.items[i].quality = this.items[i].quality + 1;
           if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
             if (this.items[i].sellIn < 11) {
