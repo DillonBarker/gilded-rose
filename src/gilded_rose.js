@@ -10,7 +10,13 @@ class Shop {
   constructor(items=[]){
     this.items = items;
   }
+  
   // My methods
+
+  decreaseQuality(i) {
+    this.items[i].quality = this.items[i].quality - 1;
+  }
+
   isQualityAtMax(i) {
     if (this.items[i].quality < 50) {
     this.items[i].quality = this.items[i].quality + 1;
@@ -19,9 +25,15 @@ class Shop {
 
   isNotSulfurasDecreaseQuality(i) {
     if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-      this.items[i].quality = this.items[i].quality - 1;
+      this.decreaseQuality(i)
     }
   };
+
+  isAConjuredItem(i) {
+    if (this.items[i].name.includes("Conjured")) {
+      this.decreaseQuality(i)
+    }
+  }
 
   isNotSulfurasDecreaseSellBy(i) {
     if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
@@ -31,6 +43,7 @@ class Shop {
 
   isQualityAtMin(i) {
     if (this.items[i].quality > 0) {
+      this.isAConjuredItem(i)
       this.isNotSulfurasDecreaseQuality(i)
     }
   };
@@ -48,9 +61,7 @@ class Shop {
   };
 
   isSellInLessThanZero(i) {
-    if (this.items[i].sellIn < 0) {
-    this.isQualityAtMax(i)
-    }
+    if (this.items[i].sellIn < 0) {}
   }
 
   isSellInLessThan(i) {

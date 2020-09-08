@@ -65,6 +65,12 @@ describe("Gilded Rose", function() {
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toEqual(48)
   })
+
+  it("decreases quality twice as normal if the item is conjured", function() {
+    const gildedRose = new Shop([ new Item("Conjured Mana Cake", 3, 6) ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toEqual(4)
+  })
     
 
 });
