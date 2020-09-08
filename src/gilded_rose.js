@@ -13,98 +13,96 @@ class Shop {
   
   // My methods
 
-  decreaseQuality(i) {
-    this.items[i].quality = this.items[i].quality - 1;
+  decreaseQuality(item) {
+    item.quality = item.quality - 1;
   }
 
-  isQualityAtMax(i) {
-    if (this.items[i].quality < 50) {
-    this.items[i].quality = this.items[i].quality + 1;
+  isQualityAtMax(item) {
+    if (item.quality < 50) {
+      item.quality = item.quality + 1;
     }
   };
 
-  isNotSulfurasDecreaseQuality(i) {
-    if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-      this.decreaseQuality(i)
+  isNotSulfurasDecreaseQuality(item) {
+    if (item.name != 'Sulfuras, Hand of Ragnaros') {
+      this.decreaseQuality(item)
     }
   };
 
-  isAConjuredItem(i) {
-    if (this.items[i].name.includes("Conjured")) {
-      this.decreaseQuality(i)
-    }
-  }
-
-  isNotSulfurasDecreaseSellBy(i) {
-    if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-      this.items[i].sellIn = this.items[i].sellIn - 1;
-    }
-  };
-
-  isQualityAtMin(i) {
-    if (this.items[i].quality > 0) {
-      this.isAConjuredItem(i)
-      this.isNotSulfurasDecreaseQuality(i)
-    }
-  };
-
-  isSellInLessThanEleven(i) {
-    if (this.items[i].sellIn < 11) {
-      this.isQualityAtMax(i)
-    }
-  };
-
-  isSellInLessThanSix(i) {
-    if (this.items[i].sellIn < 6) {
-      this.isQualityAtMax(i)
-    }
-  };
-
-  isSellInLessThanZero(i) {
-    if (this.items[i].sellIn < 0) {}
-  }
-
-  isSellInLessThan(i) {
-    if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-      this.isSellInLessThanEleven(i)
-      this.isSellInLessThanSix(i)
-      this.isSellInLessThanZero(i)
+  isAConjuredItem(item) {
+    if (item.name.includes("Conjured")) {
+      this.decreaseQuality(item)
     }
   }
 
-  isNotBrieOrBackstagePass(i) {
-    if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-      this.isQualityAtMin(i)
+  isNotSulfurasDecreaseSellBy(item) {
+    if (item.name != 'Sulfuras, Hand of Ragnaros') {
+      item.sellIn = item.sellIn - 1;
+    }
+  };
+
+  isQualityAtMin(item) {
+    if (item.quality > 0) {
+      this.isAConjuredItem(item)
+      this.isNotSulfurasDecreaseQuality(item)
+    }
+  };
+
+  isSellInLessThanEleven(item) {
+    if (item.sellIn < 11) {
+      this.isQualityAtMax(item)
+    }
+  };
+
+  isSellInLessThanSix(item) {
+    if (item.sellIn < 6) {
+      this.isQualityAtMax(item)
+    }
+  };
+
+  isSellInLessThanZero(item) {
+    if (item.sellIn < 0) {}
+  }
+
+  isSellInLessThan(item) {
+    if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
+      this.isSellInLessThanEleven(item)
+      this.isSellInLessThanSix(item)
+      this.isSellInLessThanZero(item)
+    }
+  }
+
+  isNotBrieOrBackstagePass(item) {
+    if (item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert') {
+      this.isQualityAtMin(item)
     } else {
-      this.isQualityAtMax(i) 
+      this.isQualityAtMax(item) 
     }
   }
   
-  isBrieOrBackstagePass(i) {
-    if (this.items[i].sellIn < 0) {
-      if (this.items[i].name != 'Aged Brie') {
-        if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-          this.isQualityAtMin(i)
+  isBrieOrBackstagePass(item) {
+    if (item.sellIn < 0) {
+      if (item.name != 'Aged Brie') {
+        if (item.name != 'Backstage passes to a TAFKAL80ETC concert') {
+          this.isQualityAtMin(item)
         } 
       } else {
-        this.isQualityAtMax(i)
+        this.isQualityAtMax(item)
       }
     }
   }
 
-  // Their method (with my refactors)
-  updateQuality() {
-    for (var i = 0; i < this.items.length; i++) {
-      this.isNotBrieOrBackstagePass(i)
-
-      this.isSellInLessThan(i)
-
-      this.isNotSulfurasDecreaseSellBy(i)
-
-      this.isBrieOrBackstagePass(i)
-    }
-
+  updateQuality(){
+    this.items.forEach(item => this.update(item))
     return this.items;
+  }
+ 
+  // Their method (with my refactors)
+  update(item) {
+      this.isNotBrieOrBackstagePass(item)
+      this.isSellInLessThan(item)
+      this.isNotSulfurasDecreaseSellBy(item)
+      this.isBrieOrBackstagePass(item) 
   }
 }
 module.exports = {
