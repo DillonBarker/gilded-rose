@@ -1,11 +1,3 @@
-class Item {
-  constructor(name, sellIn, quality){
-    this.name = name;
-    this.sellIn = sellIn;
-    this.quality = quality;
-  }
-}
-
 class Shop {
   constructor(items=[]){
     this.items = items;
@@ -37,7 +29,7 @@ class Shop {
     if (item.name.includes("Conjured")) {
       this.decreaseQuality(item)
     }
-  }
+  };
 
   isQualityAtMin(item) {
     if (item.quality > 0) {
@@ -95,8 +87,8 @@ class Shop {
       this.isNotBrieOrBackstagePass(item)
     }
   };
+};
 
-}
 module.exports = {
   Shop
 };

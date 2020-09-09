@@ -1,13 +1,16 @@
 var {Shop} = require('../src/shop.js');
 var {Item} = require('../src/item.js');
 
-describe("Gilded Rose", function() {
+describe("Item", function() {
+  it("should have a name, sellIn and quality", function() {
+    const item = new Item("Andúril", 10, 50)
+    expect(item.name).toEqual("Andúril")
+    expect(item.sellIn).toEqual(10)
+    expect(item.quality).toEqual(50)
+  })
+})
 
-  it("should foo", function() {
-    const gildedRose = new Shop([ new Item("foo", 0, 0) ]);
-    const items = gildedRose.aDayPasses();
-    expect(items[0].name).toEqual("foo");
-  });
+describe("Shop", function() {
 
   it("should decrease quality twice (by 2) as fast once sell by date has reached", function() {
     const gildedRose = new Shop([ new Item("+5 Dexterity Vest", 1, 20) ]);
