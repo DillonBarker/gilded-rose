@@ -11,6 +11,18 @@ class Shop {
     this.items = items;
   }
 
+  aDayPasses(){
+    this.items.forEach(item => this.update(item))
+    return this.items;
+  };
+ 
+  update(item) {
+      this.isNotBrieOrBackstagePass(item)
+      this.isNotSulfurasDecreaseSellBy(item)
+      this.isBackstageSellInLessThan(item)
+      this.isSellInLessThanZero(item) 
+  };
+
   decreaseQuality(item) {
     item.quality = item.quality - 1;
   }
@@ -84,17 +96,6 @@ class Shop {
     }
   };
 
-  updateQuality(){
-    this.items.forEach(item => this.update(item))
-    return this.items;
-  };
- 
-  update(item) {
-      this.isNotBrieOrBackstagePass(item)
-      this.isNotSulfurasDecreaseSellBy(item)
-      this.isBackstageSellInLessThan(item)
-      this.isSellInLessThanZero(item) 
-  };
 }
 module.exports = {
   Item,
