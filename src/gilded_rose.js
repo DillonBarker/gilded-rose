@@ -6,12 +6,6 @@ class Item {
   }
 }
 
-class Brie {
-  constructor(item) {
-    this.item = item
-  }
-}
-
 class Shop {
   constructor(items=[]){
     this.items = items;
