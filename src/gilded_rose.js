@@ -6,6 +6,11 @@ class Item {
   }
 }
 
+class Brie {
+
+}
+
+
 class Shop {
   constructor(items=[]){
     this.items = items;
