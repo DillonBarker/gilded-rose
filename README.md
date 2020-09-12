@@ -31,4 +31,6 @@ All items have a SellIn value which denotes the number of days we have to sell t
 * After this I worked on the next step, Conjured Items. Which I just used a `.includes("Conjured")` string method.
 * Then I wanted to remove the for loop and change it for a forEach, which looks a lot better and reads well, as there is no need to continuously reference `items[i]`, instead I could call attributes like name and quality on the item directly like `item.name`.
 
+## Refactoring
+*
 
