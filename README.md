@@ -4,6 +4,9 @@
 
 All items have a SellIn value which denotes the number of days we have to sell the item. All items have a Quality value which denotes how valuable the item is. At the end of each day our system lowers both values for every item. Pretty simple, right? Well this is where it gets interesting. 
 
+## In use
+![image](images/example.png)
+
 #### Requirements
 * Once the sell by date has passed, Quality degrades twice as fast
 * The Quality of an item is never negative
@@ -31,6 +34,4 @@ All items have a SellIn value which denotes the number of days we have to sell t
 * After this I worked on the next step, Conjured Items. Which I just used a `.includes("Conjured")` string method.
 * Then I wanted to remove the for loop and change it for a forEach, which looks a lot better and reads well, as there is no need to continuously reference `items[i]`, instead I could call attributes like name and quality on the item directly like `item.name`.
 
-## Refactoring
-*
 

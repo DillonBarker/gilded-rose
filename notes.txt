@@ -30,3 +30,7 @@ Outline:
 
 Plan:
 - Make each requirement into a test, pass them one by one manipulated the update method only.
+
+Refactoring:
+- I added a screen shot of the project in use
+- 

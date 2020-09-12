@@ -1,8 +1,14 @@
 class Shop {
   constructor(items=[]){
     this.items = items;
+    this.BY_ONE = 1
+    this.MAX_QUALITY = 50
+    this.MIN_QUALITY = 0
+    this.FIRST_RELEASE = 11
+    this.SECOND_RELEASE = 6
+    this.CONCERT_DONE = 0
   }
-
+  
   aDayPasses(){
     this.items.forEach(item => this.update(item))
     return this.items;
@@ -17,13 +23,13 @@ class Shop {
 
   decreaseQuality(item) {
     if (item.name != 'Sulfuras, Hand of Ragnaros') {
-      item.quality = item.quality - 1;
+      item.quality = item.quality - this.BY_ONE;
     }
   }
 
   increaseQuality(item) {
-    if (item.quality < 50) {
-      item.quality = item.quality + 1;
+    if (item.quality < this.MAX_QUALITY) {
+      item.quality = item.quality + this.BY_ONE;
     }
   };
 
@@ -34,7 +40,7 @@ class Shop {
   };
 
   isQualityAtMin(item) {
-    if (item.quality > 0) {
+    if (item.quality > this.MIN_QUALITY) {
       this.isAConjuredItem(item)
       this.decreaseQuality(item)
     }
@@ -42,30 +48,28 @@ class Shop {
 
   isNotSulfurasDecreaseSellBy(item) {
     if (item.name != 'Sulfuras, Hand of Ragnaros') {
-      item.sellIn = item.sellIn - 1;
+      item.sellIn = item.sellIn - this.BY_ONE;
     }
   };
 
-  isSellInLessThanEleven(item) {
-    if (item.sellIn < 11) {
+  isSellInLessThan(item) {
+    if(item.sellIn < this.FIRST_RELEASE) {
       this.increaseQuality(item)
     }
-  };
-
-  isSellInLessThanSix(item) {
-    if (item.sellIn < 6) {
+    if(item.sellIn < this.SECOND_RELEASE) {
       this.increaseQuality(item)
     }
-  };
+  }
 
   isSellInLessThanZero(item) {
-    if (item.sellIn < 0) {}
+    if (item.sellIn < this.CONCERT_DONE) {
+      this.isNotBrieOrBackstagePass(item)
+    }
   };
 
   isBackstageSellInLessThan(item) {
     if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
-      this.isSellInLessThanEleven(item)
-      this.isSellInLessThanSix(item)
+      this.isSellInLessThan(item)
       this.isSellInLessThanZero(item)
     }
   };
@@ -75,12 +79,6 @@ class Shop {
       this.isQualityAtMin(item)
     } else {
       this.increaseQuality(item) 
-    }
-  };
-  
-  isSellInLessThanZero(item) {
-    if (item.sellIn < 0) {
-      this.isNotBrieOrBackstagePass(item)
     }
   };
 };

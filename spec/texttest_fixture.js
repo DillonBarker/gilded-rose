@@ -1,5 +1,6 @@
 
-const { Shop, Item } = require("../src/gilded_rose");
+const { Item } = require("../src/item");
+const { Shop } = require("../src/shop");
 
 const items = [
   new Item("+5 Dexterity Vest", 10, 20),
@@ -23,5 +24,5 @@ for (let day = 0; day < days; day++) {
   console.log(`\n-------- day ${day} --------`);
   console.log("name, sellIn, quality");
   items.forEach(item => console.log(`${item.name}, ${item.sellIn}, ${item.quality}`));
-  gildedRose.updateQuality();
+  gildedRose.aDayPasses();
 }
