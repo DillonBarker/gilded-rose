@@ -33,4 +33,5 @@ Plan:
 
 Refactoring:
 - I added a screen shot of the project in use
-- 
+- Refactored out the magic numbers by including variables in the constructor of the shop class
+- Moved some of the sell in less than methods into one method, as it was too complicated.
